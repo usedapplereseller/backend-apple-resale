@@ -1,3 +1,3 @@
-# Rocket Academy Coding Bootcamp: Bigfoot SQL Backend
+# Rocket Academy Coding Bootcamp: Carousell Backend
 
-Install packages with `npm i` and start server with `npm start`.
+Run `npm i` to install NPM packages, then `npm start` to start the Express server.
