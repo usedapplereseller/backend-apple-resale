@@ -1,25 +1,29 @@
-const cors = require('cors')
-const express = require('express')
-require('dotenv').config();
+const cors = require("cors");
+const express = require("express");
+require("dotenv").config();
 
 // importing middlewares
-const auth = require('./middlewares/auth')
+const auth = require("./middlewares/auth");
 
 // importing Routers
-const ListingsRouter = require('./routers/listingsRouter')
+const ListingsRouter = require("./routers/listingsRouter");
+const UsersRouter = require("./routers/usersRouter");
 
 // importing Controllers
-const ListingsController = require('./controllers/listingsController')
+const ListingsController = require("./controllers/listingsController");
+const UsersController = require("./controllers/usersController");
 
 // importing DB
-const db = require('./db/models/index')
-const { listing, user } = db;
+const db = require("./db/models/index");
+const { listing, user, condition, photo, product } = db;
 
 // initializing Controllers -> note the lowercase for the first word
-const listingsController = new ListingsController(listing, user)
+const listingsController = new ListingsController(listing, product, condition);
+const usersController = new UsersController(user);
 
 // inittializing Routers
-const listingsRouter = new ListingsRouter(listingsController, auth).routes()
+const listingsRouter = new ListingsRouter(listingsController, auth).routes();
+const usersRouter = new UsersRouter(usersController).routes();
 
 const PORT = process.env.PORT;
 const app = express();
@@ -31,7 +35,8 @@ app.use(cors());
 app.use(express.json());
 
 // enable and use router
-app.use('/listings', listingsRouter)
+app.use("/listings", listingsRouter);
+app.use("/users", usersRouter);
 
 app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}!`);

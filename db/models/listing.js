@@ -8,26 +8,41 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.belongsTo(models.user, { as: "buyer", foreignKey: "buyerId" });
-      this.belongsTo(models.user, { as: "seller", foreignKey: "sellerId" });
+      this.belongsTo(models.user, { as: "buyer", foreignKey: "buyer_id" });
+      this.belongsTo(models.user, { as: "seller", foreignKey: "seller_id" });
+      this.hasMany(models.photo, { foreignKey: "listing_id" });
+      this.belongsTo(models.product, { foreignKey: "product_id" });
+      this.belongsTo(models.condition, { foreignKey: "condition_id" });
     }
   }
   Listing.init(
     {
       title: DataTypes.STRING,
-      category: DataTypes.STRING,
-      condition: DataTypes.STRING,
       price: DataTypes.INTEGER,
       description: DataTypes.TEXT,
-      shippingDetails: DataTypes.TEXT,
-      buyerId: {
+      product_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "products",
+          key: "id",
+        },
+      },
+      condition_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "conditions",
+          key: "id",
+        },
+      },
+
+      buyer_id: {
         type: DataTypes.INTEGER,
         references: {
           model: "users",
           key: "id",
         },
       },
-      sellerId: {
+      seller_id: {
         type: DataTypes.INTEGER,
         references: {
           model: "users",
