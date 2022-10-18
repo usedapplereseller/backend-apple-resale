@@ -6,11 +6,11 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.0.1",
+    "dotenv": "^16.0.3",
     "express": "^4.18.1",
     "express-oauth2-jwt-bearer": "^1.1.0",
-    "pg": "^8.7.3",
-    "sequelize": "^6.20.1"
+    "pg": "^8.8.0",
+    "sequelize": "^6.25.2"
   },
   "devDependencies": {
     "eslint": "^8.16.0",
