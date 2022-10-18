@@ -35,7 +35,7 @@ app.use(cors());
 app.use(express.json());
 
 // enable and use router
-app.use("/listings", auth, listingsRouter);
+app.use("/listings", listingsRouter);
 app.use("/users", auth, usersRouter);
 
 app.listen(PORT, () => {
