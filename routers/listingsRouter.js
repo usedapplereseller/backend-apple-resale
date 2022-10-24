@@ -7,19 +7,28 @@ class ListingsRouter {
     this.auth = auth;
   }
   routes() {
-    // we will insert routes into here later on
     router.get("/", this.controller.getAll.bind(this.controller));
-    // route protecteed with middleware
+    // route to get specific listing
+    router.get(
+      "/:productId/:listingId",
+      this.controller.getOne.bind(this.controller)
+    );
+    // route to get all listings by product i.e. macbook
+    router.get(
+      "/:productId",
+      this.controller.getListingsByProducts.bind(this.controller)
+    );
+
+    // route protected with middleware
     router.post(
       "/",
       this.auth,
       this.controller.insertOne.bind(this.controller)
     );
-    router.get("/:listingId", this.controller.getOne.bind(this.controller));
 
     // route protecteed with middleware
     router.put(
-      "/:listingId",
+      "/:productId/:listingId",
       this.auth,
       this.controller.buyItem.bind(this.controller)
     );

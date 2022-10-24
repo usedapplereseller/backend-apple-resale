@@ -41,5 +41,3 @@ app.use("/users", usersRouter);
 app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}!`);
 });
-
-//test
