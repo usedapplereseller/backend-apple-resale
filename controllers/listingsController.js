@@ -51,9 +51,14 @@ class ListingsController extends BaseController {
 
   // Retrieve specific listing. No authentication required.
   async getOne(req, res) {
-    const { listingId } = req.params;
+    const { listingId, productId } = req.params;
     try {
-      const output = await this.model.findByPk(listingId);
+      const output = await this.model.findOne({
+        where: {
+          id: listingId,
+          product_id: productId,
+        },
+      });
       return res.json(output);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err + "error tag" });
