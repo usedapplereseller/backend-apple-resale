@@ -18,7 +18,12 @@ const db = require("./db/models/index");
 const { listing, user, condition, photo, product } = db;
 
 // initializing Controllers -> note the lowercase for the first word
-const listingsController = new ListingsController(listing, product, condition);
+const listingsController = new ListingsController(
+  listing,
+  product,
+  condition,
+  user
+);
 const usersController = new UsersController(user);
 
 // inittializing Routers
