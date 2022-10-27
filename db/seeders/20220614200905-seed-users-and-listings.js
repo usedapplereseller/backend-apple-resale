@@ -38,12 +38,45 @@ module.exports = {
         updated_at: new Date(),
       },
     ]);
+    await queryInterface.bulkInsert("conditions", [
+      {
+        id: 1,
+        condition: "Brand new",
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        id: 2,
+        condition: "Like new",
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        id: 3,
+        condition: "Lightly used",
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        id: 4,
+        condition: "Well used",
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        id: 5,
+        condition: "Heavily used",
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+    ]);
     await queryInterface.bulkInsert("listings", [
       {
         title: "iPhone 12",
         price: 699,
         description: "Used for 1 year and upgrading",
         product_id: 2,
+        condition_id: 4,
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -52,6 +85,7 @@ module.exports = {
         price: 499,
         description: "Bought for my nephew but he prefers Samsung.",
         product_id: 2,
+        condition_id: 1,
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -60,6 +94,7 @@ module.exports = {
         price: 49,
         description: "Prefer a better phone.",
         product_id: 2,
+        condition_id: 3,
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -69,5 +104,7 @@ module.exports = {
   async down(queryInterface, Sequelize) {
     await queryInterface.bulkDelete("listings", null, {});
     await queryInterface.bulkDelete("users", null, {});
+    await queryInterface.bulkDelete("products", null, {});
+    await queryInterface.bulkDelete("conditions", null, {});
   },
 };
