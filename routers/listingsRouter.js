@@ -32,6 +32,7 @@ class ListingsRouter {
       this.auth,
       this.controller.buyItem.bind(this.controller)
     );
+
     return router;
   }
 }
